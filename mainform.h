@@ -15,6 +15,11 @@ public:
     MainForm(QWidget *parent = nullptr);
     ~MainForm();
 
+private slots:
+    void iamclicked();
+
+
+
 private:
     Ui::MainForm *ui;
 };
