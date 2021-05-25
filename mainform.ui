@@ -14,44 +14,117 @@
    <string>Maze project_MhammadHadi Keshavarzi</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QLabel" name="welcom_label">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>30</y>
-      <width>379</width>
-      <height>28</height>
+      <x>260</x>
+      <y>10</y>
+      <width>531</width>
+      <height>151</height>
      </rect>
     </property>
     <property name="text">
-     <string>click me</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body dir=&quot;rtl&quot;&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;سلام به نرم افزارتولید و حل هزارتو خوش آمدید&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;این نرم افزار برای پروژه میانترم درس AP دانشگاه امیر کبیر تولید شده&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;سازنده: محمدهادی کشاورزی (9723077) &lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;با تشکر فراوان از Qt و یوتیبر javidx9&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QTextEdit" name="textEdit">
+   <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>70</y>
-      <width>379</width>
-      <height>176</height>
+      <x>10</x>
+      <y>220</y>
+      <width>131</width>
+      <height>321</height>
      </rect>
     </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QPushButton" name="bfs_sol_pb">
+       <property name="text">
+        <string>solve with bfs</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="dfs_sol_pb">
+       <property name="text">
+        <string>solve with dfs</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
-   <widget class="QTextEdit" name="textEdit_2">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
+   <widget class="QGroupBox" name="dim_groupBox">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>90</y>
-      <width>379</width>
-      <height>359</height>
+      <x>10</x>
+      <y>20</y>
+      <width>241</width>
+      <height>161</height>
      </rect>
     </property>
-    <property name="readOnly">
-     <bool>true</bool>
+    <property name="title">
+     <string>ابعاد هزار تو</string>
     </property>
+    <widget class="QWidget" name="formLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>9</x>
+       <y>29</y>
+       <width>221</width>
+       <height>88</height>
+      </rect>
+     </property>
+     <layout class="QFormLayout" name="formLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="length_label">
+        <property name="font">
+         <font>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="lineWidth">
+         <number>1</number>
+        </property>
+        <property name="text">
+         <string>Length</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="width_label">
+        <property name="font">
+         <font>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Width</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QSpinBox" name="length_spinBox">
+        <property name="minimum">
+         <number>1</number>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QSpinBox" name="width_spinBox">
+        <property name="minimum">
+         <number>1</number>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QPushButton" name="ceat_pb">
+        <property name="text">
+         <string>creat maze</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

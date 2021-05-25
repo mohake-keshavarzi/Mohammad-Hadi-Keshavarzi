@@ -16,7 +16,7 @@ public:
     ~MainForm();
 
 private slots:
-    void iamclicked();
+    //void iamclicked();
 
 
 

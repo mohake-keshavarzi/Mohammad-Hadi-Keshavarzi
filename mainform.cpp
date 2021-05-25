@@ -7,7 +7,7 @@ MainForm::MainForm(QWidget *parent)
 {
     ui->setupUi(this);
 
-    connect(ui->pushButton,&QPushButton::clicked, this , &MainForm::iamclicked);
+   // connect(ui->pushButton,&QPushButton::clicked, this , &MainForm::iamclicked);
 }
 
 MainForm::~MainForm()
@@ -15,8 +15,9 @@ MainForm::~MainForm()
     delete ui;
 }
 
-void MainForm::iamclicked()
-{
-    ui->textEdit_2->setText(ui->textEdit->toPlainText());
-}
+//void MainForm::iamclicked()
+//{
+   // ui->textEdit_2->setText(ui->textEdit->toPlainText());
+//}
+
 
