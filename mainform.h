@@ -2,6 +2,7 @@
 #define MAINFORM_H
 
 #include <QMainWindow>
+#include "Maze.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainForm; }
@@ -14,10 +15,13 @@ class MainForm : public QMainWindow
 public:
     MainForm(QWidget *parent = nullptr);
     ~MainForm();
+    Maze* myMaze;
 
 private slots:
-    //void iamclicked();
+    void createMaze();
 
+protected:
+    void resizeEvent(QResizeEvent *event) override ;
 
 
 private:
