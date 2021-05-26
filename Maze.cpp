@@ -1,4 +1,5 @@
 #include "Maze.h"
+#include<stack>
 
 Maze::Maze(unsigned short _w,unsigned short _h):width{_w},height{_h}
 {
@@ -7,6 +8,7 @@ Maze::Maze(unsigned short _w,unsigned short _h):width{_w},height{_h}
         for(unsigned short j{} ; j<width ; j++)
         {
             myCells[i].push_back(new cell());
+            myCells[i][j]->set_xy_num(i,j);
         }
     }
 }
@@ -29,10 +31,11 @@ Maze::~Maze()
 
 
 
-void Maze::creatMaze()
+const Maze* Maze::creatMaze() const
 {
+    std::stack<cell> cellStack;
 
-
+    return this;
 
 }
 
