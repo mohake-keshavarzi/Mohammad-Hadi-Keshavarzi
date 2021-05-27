@@ -21,7 +21,7 @@ public:
 
 private slots:
     void createMaze();
-    void showMaze(const Maze*);
+    void showMaze(const Maze*,unsigned int scene_width,unsigned int scene_height);
 
 private:
     GraphicMaze* gMaze;

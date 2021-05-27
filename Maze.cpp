@@ -7,8 +7,7 @@ Maze::Maze(unsigned short _w,unsigned short _h):width{_w},height{_h}
         myCells.push_back(std::vector<cell*>());
         for(unsigned short j{} ; j<width ; j++)
         {
-            myCells[i].push_back(new cell());
-            myCells[i][j]->set_xy_num(i,j);
+            myCells[i].push_back(new cell(i,j));
         }
     }
 }
@@ -38,4 +37,5 @@ const Maze* Maze::creatMaze() const
     return this;
 
 }
+
 
