@@ -10,14 +10,17 @@ CONFIG += c++11
 
 SOURCES += \
     Maze.cpp \
+    graphicmaze.cpp \
     main.cpp \
     mainform.cpp
 
 HEADERS += \
     Maze.h \
+    graphicmaze.h \
     mainform.h
 
 FORMS += \
+    graphicmaze.ui \
     mainform.ui
 
 # Default rules for deployment.
