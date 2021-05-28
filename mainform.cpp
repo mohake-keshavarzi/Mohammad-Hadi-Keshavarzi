@@ -22,12 +22,19 @@ MainForm::~MainForm()
     delete ui;
     delete myMaze;
 }
-void MainForm::showMaze(const Maze* theMaze,unsigned int scene_width,unsigned int scene_height)
+void MainForm::showMaze(Maze* theMaze,unsigned int scene_width,unsigned int scene_height)
 {
-    gMaze= new GraphicMaze(this);
+    gMaze= new GraphicMaze(*theMaze,this);
+
     gView= new QGraphicsView(gMaze);
+
+    gView->setFixedSize(scene_width+5,scene_height+5);
     scene = new QGraphicsScene(0,0,scene_width,scene_height,gView);
+    scene->setBackgroundBrush(QBrush(Qt::black));
     gView->setScene(scene);
+
+    gMaze->makeWindowTidy(*gView);
+
     auto theCells{theMaze->getCells()};
     auto cellSizeFactor{scene_width/theCells[0].size()<scene_height/theCells.size() ? scene_width/theCells[0].size():scene_height/theCells.size() };
     //theCells[0][0]->myWalls.down=false;
@@ -52,7 +59,7 @@ void MainForm::showMaze(const Maze* theMaze,unsigned int scene_width,unsigned in
 
         }
 
-    gMaze->setModal(false);
+    //gMaze->setModal(false);
     gMaze->show();
 
 

@@ -1,18 +1,196 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>GraphicMaze</class>
- <widget class="QDialog" name="GraphicMaze">
+ <widget class="QMainWindow" name="GraphicMaze">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>878</width>
-    <height>715</height>
+    <width>800</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Graphical Maze</string>
   </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="gView_widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>110</y>
+      <width>479</width>
+      <height>101</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="methods_console_gb">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>260</y>
+      <width>551</width>
+      <height>271</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Methods Console</string>
+    </property>
+    <widget class="QWidget" name="verticalLayoutWidget_5">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>524</width>
+       <height>234</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="sol_console_layout">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetDefaultConstraint</enum>
+      </property>
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QLabel" name="soulution_console_label">
+        <property name="text">
+         <string>Chose your order for solving methodes (self---&gt;first---&gt;second---&gt;third---&gt;fourth) or you can chose random order</string>
+        </property>
+        <property name="textFormat">
+         <enum>Qt::AutoText</enum>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <layout class="QVBoxLayout" name="first_verticalLayout">
+          <item>
+           <widget class="QLabel" name="first_label">
+            <property name="text">
+             <string>First</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="first_comb">
+            <item>
+             <property name="text">
+              <string>Not selected</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Up</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Down</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Left</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Right</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="second_verticalLayout">
+          <item>
+           <widget class="QLabel" name="second_label">
+            <property name="text">
+             <string>Second</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="second_comb"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="third_verticalLayout">
+          <item>
+           <widget class="QLabel" name="Third_label">
+            <property name="text">
+             <string>Third</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="third_comb"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="fourth_verticalLayout">
+          <item>
+           <widget class="QLabel" name="fourth_label">
+            <property name="text">
+             <string>Fourth</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="fourth_comb"/>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="random_cb">
+        <property name="text">
+         <string>Random Order</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="methods_horizontalLayout">
+        <item>
+         <widget class="QPushButton" name="dfs_sol_pb">
+          <property name="text">
+           <string>solve with dfs</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="bfs_sol_pb">
+          <property name="text">
+           <string>solve with bfs</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>26</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>
