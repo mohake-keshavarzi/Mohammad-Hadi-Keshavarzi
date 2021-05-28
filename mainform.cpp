@@ -1,7 +1,7 @@
 #include "mainform.h"
 #include "ui_mainform.h"
 #include "Maze.h"
-#include <time.h>
+#include <cmath>
 
 MainForm::MainForm(QWidget *parent)
     : QMainWindow(parent)
@@ -29,7 +29,7 @@ void MainForm::showMaze(const Maze* theMaze,unsigned int scene_width,unsigned in
     scene = new QGraphicsScene(0,0,scene_width,scene_height,gView);
     gView->setScene(scene);
     auto theCells{theMaze->getCells()};
-    auto cellSizeFactor{scene_width/theCells.size()<scene_width/theCells.size() ? scene_width/theCells.size():scene_width/theCells.size()};
+    auto cellSizeFactor{scene_width/theCells[0].size()<scene_height/theCells.size() ? scene_width/theCells[0].size():scene_height/theCells.size() };
     //theCells[0][0]->myWalls.down=false;
     //theCells[0][1]->myWalls.up=false;
 
