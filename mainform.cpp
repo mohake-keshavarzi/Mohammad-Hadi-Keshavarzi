@@ -1,6 +1,7 @@
 #include "mainform.h"
 #include "ui_mainform.h"
 #include "Maze.h"
+#include <time.h>
 
 MainForm::MainForm(QWidget *parent)
     : QMainWindow(parent)
@@ -10,7 +11,6 @@ MainForm::MainForm(QWidget *parent)
     this->setFixedSize(width(),height());
     connect(ui->ceat_pb,&QPushButton::clicked, this , &MainForm::createMaze);
     myMaze=nullptr;
-
 }
 
 MainForm::~MainForm()
@@ -60,6 +60,7 @@ void MainForm::showMaze(const Maze* theMaze,unsigned int scene_width,unsigned in
 
 void MainForm::createMaze()
 {
+   // myMaze->getCell(0,0);
     myMaze=new Maze(ui->width_spinBox->value(),ui->height_spinBox->value());
     myMaze->creatMaze();
     showMaze(myMaze,500,500);

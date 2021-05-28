@@ -8,6 +8,8 @@
 #include <stdexcept>
 #include<string>
 #include <QGraphicsView>
+#include<random>
+
 
 class Maze
 {
@@ -20,6 +22,7 @@ public:
 
     Maze();
     Maze(unsigned short _width,unsigned short _height);
+    Maze(Maze&);//copy constractor
     ~Maze();
     void clearMaze();
 
@@ -29,8 +32,9 @@ public:
         cell(unsigned short _x_num,unsigned short _y_num):x_num{_x_num},y_num{_y_num}
         {
         }
-
-
+        cell(cell& cC):x_num{cC.x_num},y_num{cC.y_num},myWalls{cC.myWalls},myStatus{cC.myStatus}
+        {
+        }
 
         void set_xy_num(unsigned short _x_num, unsigned short _y_num) { x_num=_x_num; y_num=_y_num; };
         struct walls{
@@ -39,6 +43,7 @@ public:
             {
 
             }
+
 
         };
         struct status{
@@ -59,12 +64,45 @@ public:
     void setHeight(unsigned short _height){height=_height;};
     void setCellsSize(float _size){if(_size>wallWidth*2) cellsSize=_size;};
 
+    bool cellExists (int i,int j)const
+    {
+        if(i>=0 && j>=0){
+
+            if(static_cast<size_t>(i)<myCells.size())
+            {
+                if(static_cast<size_t>(j)<myCells[0].size())
+                    return true;
+                else
+                    return false;
+            }
+            else
+                return false;
+
+        }
+        else
+            return false;
+    }
+
+
     const cell* getCell(unsigned short i,unsigned short j)const
     {
-        if(myCells.at(i).at(j))
-            return myCells[i][j];
+        if(i<myCells.size())
+        {
+            if(j<myCells[0].size())
+            {
+                return myCells[i][j];
+            }
+            else
+            {
+                throw MyError("Out of index cell");
+            }
+        }
         else
+        {
             throw MyError("Out of index cell");
+        }
+
+
     };
     const std::vector<std::vector<cell*>>& getCells()const {return myCells;};
 

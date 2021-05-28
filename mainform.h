@@ -29,6 +29,7 @@ private:
     QGraphicsScene* scene;
 
 
+
 protected:
     void resizeEvent(QResizeEvent *event) override ;
 
