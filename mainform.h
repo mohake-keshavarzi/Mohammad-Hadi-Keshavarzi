@@ -25,8 +25,7 @@ private slots:
 
 private:
     GraphicMaze* gMaze;
-    QGraphicsView* gView;
-    QGraphicsScene* scene;
+
 
 
 

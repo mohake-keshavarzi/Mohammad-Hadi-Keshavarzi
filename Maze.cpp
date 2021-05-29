@@ -98,6 +98,9 @@ const Maze* Maze::creatMaze() const
         }
     }
 
+    myCells[0][0]->myStatus.isStart=true;
+    myCells[myCells[0].size()-1][myCells.size()-1]->myStatus.isEnd=true;
+
     return this;
 
 }

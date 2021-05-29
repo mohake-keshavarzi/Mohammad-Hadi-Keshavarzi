@@ -13,13 +13,17 @@ class GraphicMaze : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit GraphicMaze(Maze&,QWidget *parent = nullptr);
+    explicit GraphicMaze(Maze *, unsigned int scene_width, unsigned int scene_height, QWidget *parent = nullptr);
     ~GraphicMaze();
-    void makeWindowTidy(QGraphicsView& gView);
+    void makeWindowTidy();
+    void drawMaze(const Maze*);
 private:
     Ui::GraphicMaze *ui;
-    Maze myMaze;
-
+    Maze* myMaze;
+    QGraphicsView* gView;
+    QGraphicsScene* scene;
+    unsigned int scene_width;
+    unsigned int scene_height;
 
 };
 

@@ -11,57 +11,31 @@ MainForm::MainForm(QWidget *parent)
     this->setFixedSize(width(),height());
     connect(ui->ceat_pb,&QPushButton::clicked, this , &MainForm::createMaze);
     myMaze=nullptr;
+    gMaze=nullptr;
 }
 
 MainForm::~MainForm()
 {
-
-    delete scene;
-    delete gView;
-    delete gMaze;
     delete ui;
-    delete myMaze;
+    if(gMaze != nullptr)
+        delete gMaze;
+    if(myMaze != nullptr)
+        delete myMaze;
 }
 void MainForm::showMaze(Maze* theMaze,unsigned int scene_width,unsigned int scene_height)
 {
-    gMaze= new GraphicMaze(*theMaze,this);
 
-    gView= new QGraphicsView(gMaze);
 
-    gView->setFixedSize(scene_width+5,scene_height+5);
-    scene = new QGraphicsScene(0,0,scene_width,scene_height,gView);
-    scene->setBackgroundBrush(QBrush(Qt::black));
-    gView->setScene(scene);
 
-    gMaze->makeWindowTidy(*gView);
+    gMaze= new GraphicMaze(theMaze,scene_width,scene_height,this);
+    gMaze->makeWindowTidy();
 
-    auto theCells{theMaze->getCells()};
-    auto cellSizeFactor{scene_width/theCells[0].size()<scene_height/theCells.size() ? scene_width/theCells[0].size():scene_height/theCells.size() };
-    //theCells[0][0]->myWalls.down=false;
-    //theCells[0][1]->myWalls.up=false;
-
-    for(unsigned short i{}; i<theCells.size();i++)
-        for(unsigned short j{}; j<theCells[0].size();j++)
-        {
-            if(!theCells[i][j]->myStatus.visited)
-                scene->addRect(i*cellSizeFactor,j*cellSizeFactor,cellSizeFactor,cellSizeFactor,QPen(QBrush(theMaze->notVisitedColor),theMaze->wallWidth),QBrush(theMaze->notVisitedColor));
-            else if(theCells[i][j]->myStatus.visited)
-                scene->addRect(i*cellSizeFactor,j*cellSizeFactor,cellSizeFactor,cellSizeFactor,QPen(QBrush(theMaze->VisitedColor),theMaze->wallWidth),QBrush(theMaze->VisitedColor));
-
-            if(theCells[i][j]->myWalls.up)
-                scene->addLine(i*cellSizeFactor,j*cellSizeFactor,(i+1)*cellSizeFactor,(j)*cellSizeFactor,QPen(QBrush(theMaze->wallColor),theMaze->wallWidth));
-            if(theCells[i][j]->myWalls.left)
-                scene->addLine(i*cellSizeFactor,j*cellSizeFactor,(i)*cellSizeFactor,(j+1)*cellSizeFactor,QPen(QBrush(theMaze->wallColor),theMaze->wallWidth));
-            if(theCells[i][j]->myWalls.down)
-                scene->addLine((i)*cellSizeFactor,(j+1)*cellSizeFactor,(i+1)*cellSizeFactor,(j+1)*cellSizeFactor,QPen(QBrush(theMaze->wallColor),theMaze->wallWidth));
-            if(theCells[i][j]->myWalls.right)
-                scene->addLine((i+1)*cellSizeFactor,(j)*cellSizeFactor,(i+1)*cellSizeFactor,(j+1)*cellSizeFactor,QPen(QBrush(theMaze->wallColor),theMaze->wallWidth));
-
-        }
 
     //gMaze->setModal(false);
     gMaze->show();
 
+    gMaze=nullptr;
+    myMaze=nullptr;
 
 };
 
