@@ -110,6 +110,8 @@ public:
 public:
     QColor notVisitedColor{Qt::gray};
     QColor VisitedColor{Qt::white};
+    QColor startColor{Qt::magenta};
+    QColor endColor{Qt::darkBlue};
     QColor wallColor{Qt::black};
     float wallWidth{3};
 

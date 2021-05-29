@@ -17,6 +17,19 @@ public:
     ~GraphicMaze();
     void makeWindowTidy();
     void drawMaze(const Maze*);
+private slots:
+    void on_first_comb_currentIndexChanged(const QString &arg1);
+
+    void on_second_comb_currentIndexChanged(const QString &arg1);
+
+    void on_third_comb_currentIndexChanged(const QString &arg1);
+
+    void on_fourth_comb_currentIndexChanged(const QString &arg1);
+
+    void on_dfs_sol_pb_clicked();
+
+    std::vector<std::string> getOrder();
+
 private:
     Ui::GraphicMaze *ui;
     Maze* myMaze;
@@ -24,6 +37,9 @@ private:
     QGraphicsScene* scene;
     unsigned int scene_width;
     unsigned int scene_height;
+    std::vector<std::pair<Maze::cell*,QGraphicsRectItem*>> gCells;
+    std::pair<Maze::cell*,QGraphicsRectItem*> gStart;
+    std::pair<Maze::cell*,QGraphicsRectItem*> gEnd;
 
 };
 

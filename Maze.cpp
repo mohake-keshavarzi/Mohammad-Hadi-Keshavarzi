@@ -18,7 +18,13 @@ Maze::Maze():Maze(2,2)
 
 }
 
-Maze::Maze(Maze& cM):notVisitedColor{cM.notVisitedColor},VisitedColor{cM.VisitedColor},wallColor{cM.wallColor},wallWidth{cM.wallWidth}
+Maze::Maze(Maze& cM):
+    notVisitedColor{cM.notVisitedColor}
+  ,VisitedColor{cM.VisitedColor}
+  ,startColor{cM.startColor}
+  ,endColor{cM.endColor}
+  ,wallColor{cM.wallColor}
+  ,wallWidth{cM.wallWidth}
   ,width{cM.width},height{cM.height},cellsSize{cM.cellsSize}
 {
     for(unsigned short i{}; i<myCells.size(); i++)
@@ -99,7 +105,7 @@ const Maze* Maze::creatMaze() const
     }
 
     myCells[0][0]->myStatus.isStart=true;
-    myCells[myCells[0].size()-1][myCells.size()-1]->myStatus.isEnd=true;
+    myCells[myCells.size()-1][myCells[0].size()-1]->myStatus.isEnd=true;
 
     return this;
 

@@ -51,9 +51,27 @@ void GraphicMaze::drawMaze(const Maze * theMaze)
         for(unsigned short j{}; j<theCells[0].size();j++)
         {
             if(!theCells[i][j]->myStatus.visited)
-                scene->addRect(i*cellSizeFactor,j*cellSizeFactor,cellSizeFactor,cellSizeFactor,QPen(QBrush(theMaze->notVisitedColor),theMaze->wallWidth),QBrush(theMaze->notVisitedColor));
+            {
+                auto h=scene->addRect(i*cellSizeFactor,j*cellSizeFactor,cellSizeFactor,cellSizeFactor,QPen(QBrush(theMaze->notVisitedColor),theMaze->wallWidth),QBrush(theMaze->notVisitedColor));
+                gCells.push_back(std::pair<Maze::cell*,QGraphicsRectItem*>{theCells[i][j],h});
+            }
             else if(theCells[i][j]->myStatus.visited)
-                scene->addRect(i*cellSizeFactor,j*cellSizeFactor,cellSizeFactor,cellSizeFactor,QPen(QBrush(theMaze->VisitedColor),theMaze->wallWidth),QBrush(theMaze->VisitedColor));
+            {
+                auto h=scene->addRect(i*cellSizeFactor,j*cellSizeFactor,cellSizeFactor,cellSizeFactor,QPen(QBrush(theMaze->VisitedColor),theMaze->wallWidth),QBrush(theMaze->VisitedColor));
+                gCells.push_back(std::pair<Maze::cell*,QGraphicsRectItem*>{theCells[i][j],h});
+            }
+
+            if(theCells[i][j]->myStatus.isStart)
+            {
+                auto h=scene->addRect(i*cellSizeFactor,j*cellSizeFactor,cellSizeFactor,cellSizeFactor,QPen(QBrush(theMaze->startColor),theMaze->wallWidth),QBrush(theMaze->startColor));
+                gStart=std::pair<Maze::cell*,QGraphicsRectItem*>{theCells[i][j],h};
+            }
+            else if(theCells[i][j]->myStatus.isEnd)
+            {
+                auto h=scene->addRect(i*cellSizeFactor,j*cellSizeFactor,cellSizeFactor,cellSizeFactor,QPen(QBrush(theMaze->endColor),theMaze->wallWidth),QBrush(theMaze->endColor));
+                gEnd=std::pair<Maze::cell*,QGraphicsRectItem*>{theCells[i][j],h};
+            }
+
 
             if(theCells[i][j]->myWalls.up)
                 scene->addLine(i*cellSizeFactor,j*cellSizeFactor,(i+1)*cellSizeFactor,(j)*cellSizeFactor,QPen(QBrush(theMaze->wallColor),theMaze->wallWidth));
@@ -67,3 +85,111 @@ void GraphicMaze::drawMaze(const Maze * theMaze)
         }
 
 }
+
+void GraphicMaze::on_first_comb_currentIndexChanged(const QString &arg1)
+{
+    ui->dfs_sol_pb->setEnabled(false);
+    ui->bfs_sol_pb->setEnabled(false);
+
+    ui->second_comb->setEnabled(false);
+    ui->second_comb->clear();
+
+    ui->third_comb->setEnabled(false);
+    ui->third_comb->clear();
+
+    ui->fourth_comb->setEnabled(false);
+    ui->fourth_comb->clear();
+    if(arg1!="Not selected")
+    {
+        this->ui->second_comb->setEnabled(true);
+        for(auto i{0};i < ui->first_comb->count();i++)
+            if(i != ui->first_comb->currentIndex())
+                ui->second_comb->addItem(ui->first_comb->itemText(i));
+    }
+    else
+    {
+        ui->second_comb->setEnabled(false);
+        ui->second_comb->clear();
+    }
+}
+
+
+void GraphicMaze::on_second_comb_currentIndexChanged(const QString &arg1)
+{
+    ui->dfs_sol_pb->setEnabled(false);
+    ui->bfs_sol_pb->setEnabled(false);
+
+    ui->third_comb->setEnabled(false);
+    ui->third_comb->clear();
+
+    ui->fourth_comb->setEnabled(false);
+    ui->fourth_comb->clear();
+    if(arg1!="Not selected")
+    {
+        this->ui->third_comb->setEnabled(true);
+        for(auto i{0};i < ui->second_comb->count();i++)
+            if(i != ui->second_comb->currentIndex())
+                ui->third_comb->addItem(ui->second_comb->itemText(i));
+    }
+    else
+    {
+        ui->third_comb->setEnabled(false);
+        ui->third_comb->clear();
+    }
+}
+
+
+void GraphicMaze::on_third_comb_currentIndexChanged(const QString &arg1)
+{
+    ui->dfs_sol_pb->setEnabled(false);
+    ui->bfs_sol_pb->setEnabled(false);
+
+    ui->fourth_comb->setEnabled(false);
+    ui->fourth_comb->clear();
+    if(arg1!="Not selected")
+    {
+        this->ui->fourth_comb->setEnabled(true);
+        for(auto i{0};i < ui->third_comb->count();i++)
+            if(i != ui->third_comb->currentIndex())
+                ui->fourth_comb->addItem(ui->third_comb->itemText(i));
+    }
+    else
+    {
+        ui->fourth_comb->setEnabled(false);
+        ui->fourth_comb->clear();
+    }
+}
+
+
+void GraphicMaze::on_fourth_comb_currentIndexChanged(const QString &arg1)
+{
+
+    if(arg1!="Not selected" && ui->first_comb->currentIndex()!=0 && ui->second_comb->currentIndex()!=0 && ui->third_comb->currentIndex()!=0)
+    {
+        ui->dfs_sol_pb->setEnabled(true);
+        ui->bfs_sol_pb->setEnabled(true);
+    }
+    else
+    {
+        ui->dfs_sol_pb->setEnabled(false);
+        ui->bfs_sol_pb->setEnabled(false);
+    }
+
+
+}
+
+std::vector<std::string> GraphicMaze::getOrder()
+{
+
+    return std::vector<std::string> {ui->first_comb->currentText().toStdString()
+                                    ,ui->second_comb->currentText().toStdString()
+                                    ,ui->third_comb->currentText().toStdString()
+                                    ,ui->fourth_comb->currentText().toStdString()} ;
+}
+
+void GraphicMaze::on_dfs_sol_pb_clicked()
+{
+    auto orders{getOrder()};
+
+}
+

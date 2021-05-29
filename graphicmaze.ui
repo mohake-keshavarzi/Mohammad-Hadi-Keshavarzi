@@ -117,7 +117,11 @@
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="second_comb"/>
+           <widget class="QComboBox" name="second_comb">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
@@ -131,7 +135,11 @@
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="third_comb"/>
+           <widget class="QComboBox" name="third_comb">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
@@ -145,7 +153,11 @@
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="fourth_comb"/>
+           <widget class="QComboBox" name="fourth_comb">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
@@ -162,6 +174,9 @@
        <layout class="QHBoxLayout" name="methods_horizontalLayout">
         <item>
          <widget class="QPushButton" name="dfs_sol_pb">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="text">
            <string>solve with dfs</string>
           </property>
@@ -169,6 +184,9 @@
         </item>
         <item>
          <widget class="QPushButton" name="bfs_sol_pb">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="text">
            <string>solve with bfs</string>
           </property>
