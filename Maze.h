@@ -15,10 +15,7 @@ class Maze
 {
 
 public:
-    class MyError : public std::runtime_error {
-    public:
-      MyError(std::string str) : std::runtime_error(str) { }
-    };
+
 
     Maze();
     Maze(unsigned short _width,unsigned short _height);
@@ -84,26 +81,7 @@ public:
     }
 
 
-    const cell* getCell(unsigned short i,unsigned short j)const
-    {
-        if(i<myCells.size())
-        {
-            if(j<myCells[0].size())
-            {
-                return myCells[i][j];
-            }
-            else
-            {
-                throw MyError("Out of index cell");
-            }
-        }
-        else
-        {
-            throw MyError("Out of index cell");
-        }
 
-
-    };
     const std::vector<std::vector<cell*>>& getCells()const {return myCells;};
 
     const Maze* creatMaze() const;
@@ -114,6 +92,7 @@ public:
     QColor endColor{Qt::darkBlue};
     QColor wallColor{Qt::black};
     float wallWidth{3};
+
 
 private:
     unsigned short width{2};

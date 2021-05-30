@@ -28,7 +28,7 @@ private slots:
 
     void on_dfs_sol_pb_clicked();
 
-    std::vector<std::string> getOrder();
+    std::stack<std::string> getOrder();
 
 private:
     Ui::GraphicMaze *ui;
@@ -37,9 +37,10 @@ private:
     QGraphicsScene* scene;
     unsigned int scene_width;
     unsigned int scene_height;
-    std::vector<std::pair<Maze::cell*,QGraphicsRectItem*>> gCells;
+    std::vector<std::vector<std::pair<Maze::cell*,QGraphicsRectItem*>>> gCells;
     std::pair<Maze::cell*,QGraphicsRectItem*> gStart;
     std::pair<Maze::cell*,QGraphicsRectItem*> gEnd;
+
 
 };
 

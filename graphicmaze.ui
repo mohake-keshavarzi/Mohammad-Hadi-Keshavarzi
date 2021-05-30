@@ -90,17 +90,17 @@
             </item>
             <item>
              <property name="text">
+              <string>Right</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
               <string>Down</string>
              </property>
             </item>
             <item>
              <property name="text">
               <string>Left</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Right</string>
              </property>
             </item>
            </widget>

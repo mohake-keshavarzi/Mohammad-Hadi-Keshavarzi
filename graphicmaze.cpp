@@ -2,6 +2,8 @@
 #include "ui_graphicmaze.h"
 #include "Maze.h"
 #include <QGraphicsView>
+#include <QGraphicsItem>
+#include"mazesolver.h"
 GraphicMaze::GraphicMaze(Maze *m, unsigned int _scene_width, unsigned int _scene_height, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::GraphicMaze),
@@ -48,17 +50,19 @@ void GraphicMaze::drawMaze(const Maze * theMaze)
     //theCells[0][1]->myWalls.up=false;
 
     for(unsigned short i{}; i<theCells.size();i++)
+    {
+        gCells.push_back(std::vector<std::pair<Maze::cell*,QGraphicsRectItem*>>{});
         for(unsigned short j{}; j<theCells[0].size();j++)
         {
             if(!theCells[i][j]->myStatus.visited)
             {
                 auto h=scene->addRect(i*cellSizeFactor,j*cellSizeFactor,cellSizeFactor,cellSizeFactor,QPen(QBrush(theMaze->notVisitedColor),theMaze->wallWidth),QBrush(theMaze->notVisitedColor));
-                gCells.push_back(std::pair<Maze::cell*,QGraphicsRectItem*>{theCells[i][j],h});
+                gCells[i].push_back(std::pair<Maze::cell*,QGraphicsRectItem*>{theCells[i][j],h});
             }
             else if(theCells[i][j]->myStatus.visited)
             {
                 auto h=scene->addRect(i*cellSizeFactor,j*cellSizeFactor,cellSizeFactor,cellSizeFactor,QPen(QBrush(theMaze->VisitedColor),theMaze->wallWidth),QBrush(theMaze->VisitedColor));
-                gCells.push_back(std::pair<Maze::cell*,QGraphicsRectItem*>{theCells[i][j],h});
+                gCells[i].push_back(std::pair<Maze::cell*,QGraphicsRectItem*>{theCells[i][j],h});
             }
 
             if(theCells[i][j]->myStatus.isStart)
@@ -83,6 +87,7 @@ void GraphicMaze::drawMaze(const Maze * theMaze)
                 scene->addLine((i+1)*cellSizeFactor,(j)*cellSizeFactor,(i+1)*cellSizeFactor,(j+1)*cellSizeFactor,QPen(QBrush(theMaze->wallColor),theMaze->wallWidth));
 
         }
+    }
 
 }
 
@@ -178,18 +183,23 @@ void GraphicMaze::on_fourth_comb_currentIndexChanged(const QString &arg1)
 
 }
 
-std::vector<std::string> GraphicMaze::getOrder()
+std::stack<std::string> GraphicMaze::getOrder()
 {
 
-    return std::vector<std::string> {ui->first_comb->currentText().toStdString()
-                                    ,ui->second_comb->currentText().toStdString()
-                                    ,ui->third_comb->currentText().toStdString()
-                                    ,ui->fourth_comb->currentText().toStdString()} ;
+    std::stack<std::string> st{};
+
+    st.push(ui->fourth_comb->currentText().toStdString());
+    st.push(ui->third_comb->currentText().toStdString());
+    st.push(ui->second_comb->currentText().toStdString());
+    st.push(ui->first_comb->currentText().toStdString());
+
+    return st;
 }
 
 void GraphicMaze::on_dfs_sol_pb_clicked()
 {
-    auto orders{getOrder()};
 
+    MazeSolver Ms{myMaze,gCells,getOrder(),gStart.first,gEnd.first};
+    Ms.solve_dfs();
 }
 

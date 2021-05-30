@@ -12,12 +12,14 @@ SOURCES += \
     Maze.cpp \
     graphicmaze.cpp \
     main.cpp \
-    mainform.cpp
+    mainform.cpp \
+    mazesolver.cpp
 
 HEADERS += \
     Maze.h \
     graphicmaze.h \
-    mainform.h
+    mainform.h \
+    mazesolver.h
 
 FORMS += \
     graphicmaze.ui \
