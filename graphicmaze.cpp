@@ -4,6 +4,9 @@
 #include <QGraphicsView>
 #include <QGraphicsItem>
 #include"mazesolver.h"
+//#include"mythread.h"
+
+
 GraphicMaze::GraphicMaze(Maze *m, unsigned int _scene_width, unsigned int _scene_height, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::GraphicMaze),
@@ -12,10 +15,14 @@ GraphicMaze::GraphicMaze(Maze *m, unsigned int _scene_width, unsigned int _scene
     scene_height{_scene_height}
 {
     ui->setupUi(this);
+    delay=0;
+    myMazeSolver=nullptr;
     gView= new QGraphicsView();
 
     gView->setFixedSize(_scene_width+5,_scene_height+5);
-    scene = new QGraphicsScene(0,0,_scene_width,_scene_height,gView);
+    scene = new QGraphicsScene(gView);
+    scene->setSceneRect(0,0,_scene_width,_scene_height);
+
     scene->setBackgroundBrush(QBrush(Qt::black));
     gView->setScene(scene);
     this->drawMaze(m);
@@ -29,6 +36,7 @@ GraphicMaze::~GraphicMaze()
     delete scene;//scene is the child of gView so we should delete it first
     delete gView;
     delete myMaze;
+    delete myMazeSolver;
 }
 
 void GraphicMaze::makeWindowTidy()
@@ -195,11 +203,29 @@ std::stack<std::string> GraphicMaze::getOrder()
 
     return st;
 }
+void GraphicMaze::sss()
+{
 
+}
 void GraphicMaze::on_dfs_sol_pb_clicked()
 {
 
-    MazeSolver Ms{myMaze,gCells,getOrder(),gStart.first,gEnd.first};
-    Ms.solve_dfs();
+    ui->methods_console_gb->setEnabled(false);
+    MazeSolver ms{myMaze,gCells,getOrder(),gStart.first,gEnd.first,gView,delay};
+    ms.solve_dfs();
 }
 
+
+
+
+
+void GraphicMaze::on_delay_hS_valueChanged(int value)
+{
+     ui->delay_lb->setText("Delay is "+QString::number(value)+ " ms");
+     delay=value;
+}
+
+void GraphicMaze::timeElapsed(int i)
+{
+    ui->elapsedTime_lb->setText("Elapsed time is "+QString::number(i)+ " ms");
+}

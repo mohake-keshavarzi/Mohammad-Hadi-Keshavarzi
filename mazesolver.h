@@ -4,13 +4,14 @@
 #include<iostream>
 #include<QGraphicsItem>
 #include<string>
-#include"Maze.h"
+#include "Maze.h"
+
 class MazeSolver
 {
 public:
     MazeSolver(Maze*,
                std::vector<std::vector<std::pair<Maze::cell*,QGraphicsRectItem*>>>& Maze_g_cells,std::stack<std::string> Orders,
-               Maze::cell* start,Maze::cell* end);
+               Maze::cell* start,Maze::cell* end,QGraphicsView* gView,unsigned int delay);
 
     std::stack<std::pair<Maze::cell*,QGraphicsRectItem*>> solve_dfs();
 
@@ -25,6 +26,8 @@ private:
     QColor inPass_color {Qt::green};
     QColor outPass_color {Qt::red};
     std::vector<std::vector<bool>> isPassed;
+    QGraphicsView* thegView;
+    unsigned int delay{};
     bool checkCellisAvailable(int i,int j);
 };
 

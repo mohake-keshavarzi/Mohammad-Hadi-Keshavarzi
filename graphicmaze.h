@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QGraphicsView>
 #include "Maze.h"
+#include "mazesolver.h"
+//#include "mythread.h"
 namespace Ui {
 class GraphicMaze;
 }
@@ -17,6 +19,7 @@ public:
     ~GraphicMaze();
     void makeWindowTidy();
     void drawMaze(const Maze*);
+    void timeElapsed(int);
 private slots:
     void on_first_comb_currentIndexChanged(const QString &arg1);
 
@@ -30,16 +33,24 @@ private slots:
 
     std::stack<std::string> getOrder();
 
+
+    void on_delay_hS_valueChanged(int value);
+
+    void sss();
 private:
     Ui::GraphicMaze *ui;
     Maze* myMaze;
     QGraphicsView* gView;
     QGraphicsScene* scene;
+
     unsigned int scene_width;
     unsigned int scene_height;
     std::vector<std::vector<std::pair<Maze::cell*,QGraphicsRectItem*>>> gCells;
     std::pair<Maze::cell*,QGraphicsRectItem*> gStart;
     std::pair<Maze::cell*,QGraphicsRectItem*> gEnd;
+    MazeSolver* myMazeSolver;
+    //myThread solveMazeDFS;
+    unsigned int delay;
 
 
 };

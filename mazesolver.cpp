@@ -1,12 +1,17 @@
 #include "mazesolver.h"
+#include<QThread>
 
-MazeSolver::MazeSolver(Maze* m, std::vector<std::vector<std::pair<Maze::cell*,QGraphicsRectItem*>>>& Maze_g_cells, std::stack<std::string> order, Maze::cell *start, Maze::cell *end)
+MazeSolver::MazeSolver(Maze* m, std::vector<std::vector<std::pair<Maze::cell*,QGraphicsRectItem*>>>& Maze_g_cells, std::stack<std::string> order, Maze::cell *start, Maze::cell *end, QGraphicsView *gView, unsigned int _delay)
     :theMaze(m)
     ,cellsOrders{order}
     ,maze_GCells(Maze_g_cells)
     ,startCell(start)
     ,endCell(end)
+    ,thegView(gView)
+    ,delay{_delay}
+
 {
+
     for(size_t i{};i<Maze_g_cells.size();i++)
     {
         isPassed.push_back(std::vector<bool>{});
@@ -34,14 +39,19 @@ std::stack<std::pair<Maze::cell*,QGraphicsRectItem*>> MazeSolver::solve_dfs()
     std::stack<std::pair<Maze::cell*,QGraphicsRectItem*>> path{};
 
     path.push(maze_GCells[startCell->x_num][startCell->y_num]);
+    size_t h{};
     while(path.top().first != maze_GCells[endCell->x_num][endCell->y_num].first)
     {
+
+
         size_t pathTopcellX{path.top().first->x_num};
         size_t pathTopcellY{path.top().first->y_num};
         std::stack<std::string> thisRoundOrders=cellsOrders;
 
         path.top().second->setBrush(QBrush{this->inPass_color});
         path.top().second->setPen(QPen(QBrush(this->inPass_color),theMaze->wallWidth));
+        path.top().second->update();
+
         isPassed[pathTopcellX][pathTopcellY]=true;
 
         bool anActionCompletd{false};
@@ -85,9 +95,20 @@ std::stack<std::pair<Maze::cell*,QGraphicsRectItem*>> MazeSolver::solve_dfs()
         {
             path.top().second->setBrush(QBrush{this->outPass_color});
             path.top().second->setPen(QPen(QBrush(this->outPass_color),theMaze->wallWidth));
-
+            path.top().second->update();
             path.pop();
         }
+
+    //theScene->update(0,0,500,500);
+
+
+
+
+    if(delay !=0)
+    {
+        thegView->viewport()->repaint();
+        QThread::msleep(delay);
+    }
     }
     return path;
 }
