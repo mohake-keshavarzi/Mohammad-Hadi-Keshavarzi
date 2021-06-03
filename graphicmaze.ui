@@ -25,10 +25,13 @@
     </property>
    </widget>
    <widget class="QGroupBox" name="methods_console_gb">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>260</y>
+      <y>220</y>
       <width>551</width>
       <height>271</height>
      </rect>
@@ -78,6 +81,9 @@
           </item>
           <item>
            <widget class="QComboBox" name="first_comb">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
             <item>
              <property name="text">
               <string>Not selected</string>
@@ -164,13 +170,6 @@
        </layout>
       </item>
       <item>
-       <widget class="QCheckBox" name="random_cb">
-        <property name="text">
-         <string>Random Order</string>
-        </property>
-       </widget>
-      </item>
-      <item>
        <layout class="QHBoxLayout" name="methods_horizontalLayout">
         <item>
          <widget class="QPushButton" name="dfs_sol_pb">
@@ -224,6 +223,22 @@
       </item>
      </layout>
     </widget>
+   </widget>
+   <widget class="QPushButton" name="reset_pb">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>490</y>
+      <width>211</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Reset</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

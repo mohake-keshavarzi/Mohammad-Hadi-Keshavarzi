@@ -43,7 +43,10 @@ void GraphicMaze::makeWindowTidy()
 {
     gView->setParent(ui->gView_widget);
     ui->gView_widget->setGeometry(10,10,gView->width(),gView->height());
-    ui->methods_console_gb->setGeometry(gView->width()+20,10,ui->methods_console_gb->width(),ui->methods_console_gb->height());
+    ui->methods_console_gb->setGeometry(ui->gView_widget->width()+20,10,ui->methods_console_gb->width(),ui->methods_console_gb->height());
+    ui->reset_pb->setGeometry(ui->gView_widget->width()+ui->methods_console_gb->width()/2-ui->reset_pb->width()/2,
+                              ui->methods_console_gb->height()+20
+                              ,ui->reset_pb->width(),ui->reset_pb->height());
 
     this->setFixedWidth(ui->methods_console_gb->x()+ui->methods_console_gb->width()+10);
     this->setFixedHeight(ui->gView_widget->y()+ui->gView_widget->height()+30);
@@ -203,16 +206,14 @@ std::stack<std::string> GraphicMaze::getOrder()
 
     return st;
 }
-void GraphicMaze::sss()
-{
 
-}
 void GraphicMaze::on_dfs_sol_pb_clicked()
 {
 
     ui->methods_console_gb->setEnabled(false);
     MazeSolver ms{myMaze,gCells,getOrder(),gStart.first,gEnd.first,gView,delay};
     ms.solve_dfs();
+    ui->reset_pb->setEnabled(true);
 }
 
 
@@ -235,5 +236,16 @@ void GraphicMaze::on_bfs_sol_pb_clicked()
     ui->methods_console_gb->setEnabled(false);
     MazeSolver ms{myMaze,gCells,getOrder(),gStart.first,gEnd.first,gView,delay};
     ms.solve_bfs();
+    ui->reset_pb->setEnabled(true);
+}
+
+
+void GraphicMaze::on_reset_pb_clicked()
+{
+    ui->reset_pb->setEnabled(false);
+    scene->clear();
+    gCells.clear();
+    drawMaze(myMaze);
+    ui->methods_console_gb->setEnabled(true);
 }
 

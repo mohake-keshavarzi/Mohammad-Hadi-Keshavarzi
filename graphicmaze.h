@@ -36,8 +36,10 @@ private slots:
 
     void on_delay_hS_valueChanged(int value);
 
-    void sss();
+
     void on_bfs_sol_pb_clicked();
+
+    void on_reset_pb_clicked();
 
 private:
     Ui::GraphicMaze *ui;
