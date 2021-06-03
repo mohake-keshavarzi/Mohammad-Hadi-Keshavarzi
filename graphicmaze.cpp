@@ -229,3 +229,11 @@ void GraphicMaze::timeElapsed(int i)
 {
     ui->elapsedTime_lb->setText("Elapsed time is "+QString::number(i)+ " ms");
 }
+
+void GraphicMaze::on_bfs_sol_pb_clicked()
+{
+    ui->methods_console_gb->setEnabled(false);
+    MazeSolver ms{myMaze,gCells,getOrder(),gStart.first,gEnd.first,gView,delay};
+    ms.solve_bfs();
+}
+

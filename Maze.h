@@ -26,11 +26,15 @@ public:
 
     struct cell{
         unsigned short x_num{},y_num{};
+        std::pair<Maze::cell*,QGraphicsRectItem*> previousGCell{std::pair<Maze::cell*,QGraphicsRectItem*>{nullptr,nullptr}};//used in bfs
         cell(unsigned short _x_num,unsigned short _y_num):x_num{_x_num},y_num{_y_num}
         {
         }
-        cell(cell& cC):x_num{cC.x_num},y_num{cC.y_num},myWalls{cC.myWalls},myStatus{cC.myStatus}
+        cell(cell& cC):x_num{cC.x_num},y_num{cC.y_num}
+          ,myWalls{cC.myWalls},myStatus{cC.myStatus}
         {
+            previousGCell=std::pair<Maze::cell*,QGraphicsRectItem*>{cC.previousGCell.first,cC.previousGCell.second};
+
         }
 
         void set_xy_num(unsigned short _x_num, unsigned short _y_num) { x_num=_x_num; y_num=_y_num; };

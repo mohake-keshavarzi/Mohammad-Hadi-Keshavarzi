@@ -14,7 +14,7 @@ public:
                Maze::cell* start,Maze::cell* end,QGraphicsView* gView,unsigned int delay);
 
     std::stack<std::pair<Maze::cell*,QGraphicsRectItem*>> solve_dfs();
-
+    std::stack<std::pair<Maze::cell*,QGraphicsRectItem*>> solve_bfs();
 private:
 
     Maze* theMaze;
@@ -25,6 +25,7 @@ private:
 
     QColor inPass_color {Qt::green};
     QColor outPass_color {Qt::red};
+    QColor notSure_color{Qt::gray};
     std::vector<std::vector<bool>> isPassed;
     QGraphicsView* thegView;
     unsigned int delay{};
