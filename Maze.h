@@ -21,7 +21,10 @@ public:
     Maze(unsigned short _width,unsigned short _height);
     Maze(Maze&);//copy constractor
     ~Maze();
-    void clearMaze();
+
+    Maze& operator=(const Maze& maze);
+
+  //  void clearMaze();
 
 
     struct cell{

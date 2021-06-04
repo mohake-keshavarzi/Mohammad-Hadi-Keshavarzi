@@ -31,7 +31,7 @@ Maze::Maze(Maze& cM):
     {
         for(unsigned short j{}; j<myCells[0].size(); j++)
         {
-            this->myCells[i][j]=new cell{*myCells[i][j]};
+            this->myCells[i][j]=new cell{*cM.myCells[i][j]};
         }
     }
 }
@@ -47,7 +47,25 @@ Maze::~Maze()
     }
 }
 
+Maze& Maze::operator=(const Maze &cM)
+{
+   notVisitedColor=cM.notVisitedColor;
+  VisitedColor=cM.VisitedColor;
+  startColor=cM.startColor;
+  endColor=cM.endColor;
+  wallColor=cM.wallColor;
+  wallWidth=cM.wallWidth;
+  width=cM.width;height=cM.height;cellsSize=cM.cellsSize;
 
+  for(unsigned short i{}; i<myCells.size(); i++)
+  {
+      for(unsigned short j{}; j<myCells[0].size(); j++)
+      {
+          this->myCells[i][j]=new cell{*cM.myCells[i][j]};
+      }
+  }
+  return *this;
+}
 
 const Maze* Maze::creatMaze() const
 {

@@ -27,6 +27,8 @@ GraphicMaze::GraphicMaze(Maze *m, unsigned int _scene_width, unsigned int _scene
     gView->setScene(scene);
     this->drawMaze(m);
 
+    makeWindowTidy();
+
 }
 
 GraphicMaze::~GraphicMaze()
@@ -226,10 +228,6 @@ void GraphicMaze::on_delay_hS_valueChanged(int value)
      delay=value;
 }
 
-void GraphicMaze::timeElapsed(int i)
-{
-    ui->elapsedTime_lb->setText("Elapsed time is "+QString::number(i)+ " ms");
-}
 
 void GraphicMaze::on_bfs_sol_pb_clicked()
 {

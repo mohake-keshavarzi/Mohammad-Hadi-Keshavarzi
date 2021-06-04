@@ -208,14 +208,7 @@
         <item>
          <widget class="QLabel" name="delay_lb">
           <property name="text">
-           <string>0</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="elapsedTime_lb">
-          <property name="text">
-           <string>Elapsed time:</string>
+           <string>Delay is  0ms</string>
           </property>
          </widget>
         </item>

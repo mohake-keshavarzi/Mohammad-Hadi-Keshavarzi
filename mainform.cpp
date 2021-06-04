@@ -9,7 +9,7 @@ MainForm::MainForm(QWidget *parent)
 {
     ui->setupUi(this);
     this->setFixedSize(width(),height());
-    connect(ui->ceat_pb,&QPushButton::clicked, this , &MainForm::createMaze);
+    connect(ui->ceate_pb,&QPushButton::clicked, this , &MainForm::createMaze);
     myMaze=nullptr;
     gMaze=nullptr;
 }
@@ -22,13 +22,14 @@ MainForm::~MainForm()
     if(myMaze != nullptr)
         delete myMaze;
 }
+
+
 void MainForm::showMaze(Maze* theMaze,unsigned int scene_width,unsigned int scene_height)
 {
 
 
 
     gMaze= new GraphicMaze(theMaze,scene_width,scene_height,this);
-    gMaze->makeWindowTidy();
 
 
     //gMaze->setModal(false);
@@ -47,8 +48,8 @@ void MainForm::createMaze()
     showMaze(myMaze,500,500);
 }
 
-void MainForm::resizeEvent(QResizeEvent *event)
-{
-
-    QWidget::resizeEvent(event);
-}
+//void MainForm::resizeEvent(QResizeEvent *event)
+//{
+//
+ //   QWidget::resizeEvent(event);
+//}

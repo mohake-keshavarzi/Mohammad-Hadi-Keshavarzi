@@ -17,7 +17,7 @@ class MainForm : public QMainWindow
 public:
     MainForm(QWidget *parent = nullptr);
     ~MainForm();
-    Maze* myMaze;
+
 
 private slots:
     void createMaze();
@@ -25,12 +25,13 @@ private slots:
 
 private:
     GraphicMaze* gMaze;
+    Maze* myMaze;
 
 
 
 
-protected:
-    void resizeEvent(QResizeEvent *event) override ;
+//protected:
+    //void resizeEvent(QResizeEvent *event) override ;
 
 
 private:

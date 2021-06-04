@@ -39,7 +39,7 @@ std::stack<std::pair<Maze::cell*,QGraphicsRectItem*>> MazeSolver::solve_dfs()
     std::stack<std::pair<Maze::cell*,QGraphicsRectItem*>> path{};
 
     path.push(maze_GCells[startCell->x_num][startCell->y_num]);
-    size_t h{};
+    //size_t h{};
     while(path.top().first != maze_GCells[endCell->x_num][endCell->y_num].first)
     {
 
@@ -127,7 +127,7 @@ std::stack<std::pair<Maze::cell*,QGraphicsRectItem*>> MazeSolver::solve_bfs()
     isPassed[queue.front().first->x_num][queue.front().first->y_num]=true;
 
     bool endFound=false;
-    while(queue.front().first != maze_GCells[endCell->x_num][endCell->y_num].first && !endFound)
+    while(queue.front().first != maze_GCells[endCell->x_num][endCell->y_num].first || !endFound)
     {
 
         std::pair<Maze::cell*,QGraphicsRectItem*> currentCell;

@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>804</width>
-    <height>230</height>
+    <width>759</width>
+    <height>229</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,12 +22,23 @@
      <rect>
       <x>260</x>
       <y>10</y>
-      <width>531</width>
+      <width>481</width>
       <height>151</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>B Koodak</family>
+      <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body dir=&quot;rtl&quot;&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;سلام به نرم افزارتولید و حل هزارتو خوش آمدید&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;این نرم افزار برای پروژه میانترم درس AP دانشگاه امیر کبیر تولید شده&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;سازنده: محمدهادی کشاورزی (9723077) &lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;با تشکر فراوان از Qt و یوتیبر javidx9&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body dir=&quot;rtl&quot;&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;سلام! به نرم افزار تولید و حل هزارتو خوش آمدید&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;این نرم افزار برای پروژه میانترم درس AP دانشگاه امیر کبیر طراحی شده است&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; محمدهادی کشاورزی (9723077) &lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;با تشکر فراوان از Qt &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QGroupBox" name="dim_groupBox">
@@ -69,6 +80,12 @@
       </item>
       <item row="0" column="1">
        <widget class="QSpinBox" name="height_spinBox">
+        <property name="locale">
+         <locale language="English" country="UnitedStates"/>
+        </property>
+        <property name="buttonSymbols">
+         <enum>QAbstractSpinBox::UpDownArrows</enum>
+        </property>
         <property name="minimum">
          <number>2</number>
         </property>
@@ -87,14 +104,17 @@
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="QPushButton" name="ceat_pb">
+       <widget class="QPushButton" name="ceate_pb">
         <property name="text">
-         <string>creat maze</string>
+         <string>create maze</string>
         </property>
        </widget>
       </item>
       <item row="1" column="1">
        <widget class="QSpinBox" name="width_spinBox">
+        <property name="locale">
+         <locale language="English" country="UnitedStates"/>
+        </property>
         <property name="minimum">
          <number>2</number>
         </property>
@@ -109,13 +129,18 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>804</width>
+     <width>759</width>
      <height>26</height>
     </rect>
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <tabstops>
+  <tabstop>height_spinBox</tabstop>
+  <tabstop>width_spinBox</tabstop>
+  <tabstop>ceate_pb</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

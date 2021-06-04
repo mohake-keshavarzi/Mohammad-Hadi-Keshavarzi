@@ -17,9 +17,9 @@ class GraphicMaze : public QMainWindow
 public:
     explicit GraphicMaze(Maze *, unsigned int scene_width, unsigned int scene_height, QWidget *parent = nullptr);
     ~GraphicMaze();
-    void makeWindowTidy();
+
     void drawMaze(const Maze*);
-    void timeElapsed(int);
+   // void timeElapsed(int);
 private slots:
     void on_first_comb_currentIndexChanged(const QString &arg1);
 
@@ -42,6 +42,7 @@ private slots:
     void on_reset_pb_clicked();
 
 private:
+    void makeWindowTidy();
     Ui::GraphicMaze *ui;
     Maze* myMaze;
     QGraphicsView* gView;
