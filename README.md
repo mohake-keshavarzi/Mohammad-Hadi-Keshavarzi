@@ -2,7 +2,7 @@
 
 This is my AP course midterm project
 
-This code will generate a random maze and then it will solve it with DFS algorithm or BFS alghoritm.
+This code will generate a random maze with Recursive Back Tracker approach and then it will solve the maze with DFS algorithm or BFS alghoritm.
 
 I used c++ and Qt in this project.
 
